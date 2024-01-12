@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1 style="text-align: center;">Welcome to HomePage</h1>
+        <h1 style="text-align: center;">Welcome to Topic Page</h1>
     </header>
     <hr>
     <div style="text-align: center;">
