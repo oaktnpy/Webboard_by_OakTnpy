@@ -19,11 +19,14 @@
         <a href="login.html" style="float: right;">Sign In</a>
     </form>
     <ul>
-        <li><a href="post.php?id=1">Topic 1</a></li>
-        <li><a href="post.php?id=2">Topic 2</a></li>
-        <li><a href="post.php?id=3">Topic 3</a></li>
-        <li><a href="post.php?id=4">Topic 4</a></li>
-        <li><a href="post.php?id=5">Topic 5</a></li>
+        <?php
+            $i = 1;
+
+            while($i <= 10) {
+                echo "<li><a href='post.php?id=$i'>" . "Topic $i" ."</a></li>";
+                $i++;
+            }
+        ?>
     </ul>
     <hr>
     <footer>

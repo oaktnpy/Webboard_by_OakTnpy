@@ -12,9 +12,20 @@
     <hr>
     <div style="text-align: center;">
         <?php
-            echo "Login with <br>"
-            ."Login = $_POST[login] <br>"
-            ."Password = $_POST[pwd] <br>";
+            $Login = $_POST['login'];
+            $Password = $_POST['pwd'];
+
+            if($Login == 'admin' && $Password == 'ad1234') {
+                echo "WELCOME, ADMIN." . "<BR>";
+            }
+            else if($Login == 'member' && $Password == 'mem1234') {
+                echo "WELCOME, MEMBER." . "<BR>";
+            }
+            else {
+                echo "Username or Password is Incorrect." . "<BR>";
+            }
+
+            echo "<a href='index.php'> Back to Home Page";
         ?>
     </div>
 </body>

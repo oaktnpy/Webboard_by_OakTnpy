@@ -11,7 +11,17 @@
     </header>
     <hr>
     <div style="text-align: center;">
-        Want to see Topic Number <?php echo $_GET['id'] ?>
+        Want to see Topic Number <?php echo $_GET['id'] . "<BR>" ?>
+
+        <?php
+            $n = $_GET['id'];
+
+            if(($n % 2) == 0) {
+                echo "Topic number is an even number <BR>";
+            } else {
+                echo "Topic nummber is an odd number <BR>";
+            }
+        ?>
     </div>
     <br>
     <table style="border: 2px solid black; width: 40%;" align="center">
