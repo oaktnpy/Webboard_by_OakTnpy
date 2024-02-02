@@ -27,7 +27,7 @@
                     Users : $_SESSION[username]&nbsp;&nbsp;
                     <a href=logout.php>Log Out</a>
                 </div>";
-                echo"<br><a href=newport.php>Create a new Topic</a>";
+                echo"<br><a href=newpost.php>Create a new Topic</a>";
             }
         ?>
     </form>
@@ -36,12 +36,14 @@
             $i = 1;
 
             while($i <= 10) {
-                echo "<li><a href='post.php?id=$i'>" . "Topic $i" ."</a></li>";
-                $i++;
+                echo "<li><a href='post.php?id=$i'>" . "Topic $i" ."</a>";
 
                 if(isset($_SESSION['id']) && $_SESSION['role']=='a'){
-                    echo "&nbsp;&nbsp;<a href=delete.php?id=$i>ลบ</a>";
+                    echo "&nbsp;&nbsp;<a href=delete.php?id=$i>delete</a>";
                 }
+
+                echo "</li>";
+                $i++;
             }
         ?>
     </ul>
