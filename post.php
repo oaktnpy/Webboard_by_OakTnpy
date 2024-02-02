@@ -37,7 +37,7 @@
     </table>
     <br>
     <div style="text-align: center;">
-        <a href="index.html">Back to Index</a>
+        <a href="index.php">Back to Index</a>
     </div>
 </body>
 </html>

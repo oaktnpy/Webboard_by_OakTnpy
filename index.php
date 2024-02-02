@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +19,17 @@
             <option value="general">-- General --</option>
             <option value="study">-- Study --</option>
         </select>
-        <a href="login.html" style="float: right;">Sign In</a>
+        <?php
+            if (!isset($_SESSION['id'])){
+                echo "<a href=login.php style='float:right;'>Log In</a>";
+            }else{
+                echo"<div style='float: right;'>
+                    Users : $_SESSION[username]&nbsp;&nbsp;
+                    <a href=logout.php>Log Out</a>
+                </div>";
+                echo"<br><a href=newport.php>Create a new Topic</a>";
+            }
+        ?>
     </form>
     <ul>
         <?php
@@ -25,6 +38,10 @@
             while($i <= 10) {
                 echo "<li><a href='post.php?id=$i'>" . "Topic $i" ."</a></li>";
                 $i++;
+
+                if(isset($_SESSION['id']) && $_SESSION['role']=='a'){
+                    echo "&nbsp;&nbsp;<a href=delete.php?id=$i>ลบ</a>";
+                }
             }
         ?>
     </ul>
