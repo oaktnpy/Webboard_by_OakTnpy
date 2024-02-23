@@ -13,32 +13,34 @@ if(isset($_SESSION['id'])){
     <title>Verify</title>
 </head>
 <body>
-    <header>
-        <h1 style="text-align: center;">LOGIN to WebBoard</h1>
-    </header>
-    <hr>
     <div style="text-align: center;">
         <?php
             $Login = $_POST['login'];
             $Password = $_POST['pwd'];
 
-            if($Login == 'admin' && $Password == 'ad1234') {
+            if ($Login == 'admin' && $Password == 'ad1234') {
                 $_SESSION['username']='admin';
                 $_SESSION['role']='a';
                 $_SESSION['id']=session_id();
-                echo "WELCOME, ADMIN." . "<BR>";
+                //redirect to index.php
+                header("location:index.php");
+                die();
             }
-            else if($Login == 'member' && $Password == 'mem1234') {
+            else if ($Login == 'member' && $Password == 'mem1234') {
                 $_SESSION['username']='member';
                 $_SESSION['role']='m';
                 $_SESSION['id']=session_id();
-                echo "WELCOME, MEMBER." . "<BR>";
+                //redirect to index.php
+                header("location:index.php");
+                die();
             }
             else {
-                echo "Username or Password is Incorrect." . "<BR>";
+                //create var session
+                $_SESSION['error']='error';
+                //redirect to login.php
+                header("location:login.php");
+                die();
             }
-
-            echo "<a href='index.php'> Back to Home Page";
         ?>
     </div>
 </body>
