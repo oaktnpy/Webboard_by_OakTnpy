@@ -9,11 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Webboard-OakTnpy</title>
+    <title>Webboard LnwLnw</title>
 </head>
 <body>
     <div class="container-lg">
-        <h1 style="text-align: center;" class="mt-3">Welcome to HomePage</h1>
+        <h1 style="text-align: center;" class="mt-3">WELCOME TO HOMEPAGE</h1>
 
         <?php include "nav.php" ?>
             
@@ -25,9 +25,15 @@
                         --ALL--
                     </button>
                     <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">ALL</a></li>
-                    <li><a class="dropdown-item" href="#">Study</a></li>
-                    <li><a class="dropdown-item" href="#">General</a></li>
+                        <li><a class="dropdown-item" href="#">ALL</a></li>
+                        <?php
+                            $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                            $sql = "SELECT * FROM category";
+                            foreach($conn->query($sql) as $row) {
+                                echo "<li><a class=dropdown-item href=#>$row[name]</a></li>";
+                            }
+                            $conn = null;
+                        ?>
                     </ul>
                 </span>
             </div>
@@ -40,13 +46,16 @@
  
         <table class="table table-striped mt-4">
             <?php
-            for($i = 1; $i<=10; $i++){
-                echo "<tr><td class='d-flex justify-content-between'><a href=post.php?id=$i style=text-decoration:none>Topic No.$i</a>";
-                if(isset($_SESSION['id'])&&$_SESSION['role']=='a'){
-                    echo"&nbsp;&nbsp;<a href=delete.php?id=$i class='btn btn-danger btn-sm me-2'><i class='bi bi-trash'></i></a>";
+                $conn = new PDO("mysql:host=localhost;dbname=webboard;charset=utf8","root","");
+                $sql = "SELECT t3.name, t1.title, t1.id, t2.login, t1.post_date FROM post as t1
+                    INNER JOIN user as t2 ON (t1.user_id = t2.id)
+                    INNER JOIN category as t3 ON (t1.cat_id = t3.id)
+                    ORDER BY t1.post_date DESC";
+                $result = $conn->query($sql);
+                while ($row = $result->fetch()) {
+                    echo "<tr><td>[ $row[0] ] <a href=post.php?id=$row[2] style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</td></tr>";
                 }
-                echo"</td></tr>";
-            }
+                $conn = null;
             ?>
         </table>
     </div>

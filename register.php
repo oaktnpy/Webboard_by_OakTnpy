@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <header>
-            <h1 style="text-align: center;" class="mt-3">WELCOME TO HOMPAGE</h1>
+            <h1 style="text-align: center;" class="mt-3">REGISTER MEMBERS</h1>
         </header>
 
         <?php include "nav.php" ?>
@@ -20,6 +20,8 @@
             <div class="col-lg-3 col-md-2 col-sm-1"></div>
             <div class="col-lg-6 col-md-8 col-sm-10">
                 <?php
+                    session_start();
+                    
                     if (isset($_SESSION['add_login'])) {
                         if ($_SESSION['add_login']=="error") {
                             echo "<div class='alert alert-danger'> Duplicate account name or Datebase problem </div>";
