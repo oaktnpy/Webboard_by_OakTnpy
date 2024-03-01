@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container-lg">
-        <h1 style="text-align: center;" class="mt-3">Welcome to HomePage</h1>
+        <h1 style="text-align: center;" class="mt-3">LOGIN PAGE</h1>
 
         <?php include "nav.php" ?>
         
@@ -19,6 +19,8 @@
             <div class="col-lg-4 col-md-6 col-sm-8 col-10">
 
                 <?php
+                    session_start();
+                    
                     if (isset($_SESSION['error'])) {
                         echo "<div class='alert alert-danger'>The Username or Password Incorrrect!</div>";
                         unset($_SESSION['error']);
@@ -30,7 +32,7 @@
                         Login
                     </div>
                     <div class="card-body">
-                        <form action="verify.php" method="post">
+                        <form action="verify.php" method="POST">
                             <div class="form-group">
                                 <label for="user" class="form-label">Login :</label>
                                 <input type="text" id="user" name="login" class="form-control" required>
@@ -51,7 +53,7 @@
         </div>
 
         <div style="text-align: center;">
-            you haven't registered yet ? <a href="register.html">register</a> now.
+            you haven't registered yet ? <a href="register.php">register</a> now.
         </div>
     </div>
 </body>
