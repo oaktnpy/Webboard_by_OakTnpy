@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Login</title>
+    <title>Webboard LnwLnw</title>
 </head>
 <body>
     <div class="container-lg">
@@ -39,7 +39,12 @@
                             </div>
                             <div class="form-group mt-2">
                                 <label for="pwd" class="form-label">Password :</label>
-                                <input type="password" id="pwd" name="pwd" class="form-control" required>
+                                <div class="input-group">
+                                    <input type="password" name="pwd" class="form-control" id="passwordInput" required>
+                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
+                                        <i id="eyeIcon" class="bi bi-eye-fill"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="d-flex justify-content-center mt-3">
                                 <button type="submit" class="btn btn-secondary btn-sm me-1" role="button" value="login">Login</button>
@@ -55,6 +60,23 @@
         <div style="text-align: center;">
             you haven't registered yet ? <a href="register.php">register</a> now.
         </div>
+
+        <script>
+            function togglePasswordVisibility() {
+                var passwordInput = document.getElementById("passwordInput");
+                var eyeIcon = document.getElementById("eyeIcon");
+
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    eyeIcon.classList.remove("bi-eye-fill");
+                    eyeIcon.classList.add("bi-eye-slash-fill");
+                } else {
+                    passwordInput.type = "password";
+                    eyeIcon.classList.remove("bi-eye-slash-fill");
+                    eyeIcon.classList.add("bi-eye-fill");
+                }
+            }
+        </script>
     </div>
 </body>
 </html>

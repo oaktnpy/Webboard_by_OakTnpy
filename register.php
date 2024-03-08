@@ -6,7 +6,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Register</title>
+    <title>Webboard LnwLnw</title>
+
+    <script>
+        function validatePassword() {
+            var passwordInputs = document.getElementsByName("pwd");
+            var password = passwordInputs[0].value;
+            var confirmPassword = passwordInputs[1].value;
+
+            if (password !== confirmPassword) {
+                alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -34,27 +49,33 @@
                 <div class="card border-primary">
                     <div class="card-header bg-primary text-white">Register</div>
                     <div class="card-body">
-                        <form action="register_save.php" method="POST">
+                        <form action="register_save.php" method="POST" onsubmit="validatePassword()">
                             <div class="row">
-                                <label class="col-lg-3 col-form-label">Username : </label>
+                                <label class="col-lg-3 col-form-label">Username: </label>
                                 <div class="col-lg-9">
                                     <input type="text" name="login" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Password : </label>
+                                <label class="col-lg-3 col-form-label">Password: </label>
                                 <div class="col-lg-9">
                                     <input type="password" name="pwd" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Name-Surename : </label>
+                                <label class="col-lg-3 col-form-label">Confirm Password: </label>
+                                <div class="col-lg-9">
+                                    <input type="password" name="pwd" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <label class="col-lg-3 col-form-label">Name-Surename: </label>
                                 <div class="col-lg-9">
                                     <input type="text" name="name" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Gender : </label>
+                                <label class="col-lg-3 col-form-label">Gender: </label>
                                 <div class="col-lg-9">
                                     <div class="form-check">
                                         <input type="radio" name="gender" value="m" class="form-check-input" require>
@@ -71,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Email : </label>
+                                <label class="col-lg-3 col-form-label">Email: </label>
                                 <div class="col-lg-9">
                                     <input type="email" name="email" class="form-control" require>
                                 </div>
