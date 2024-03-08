@@ -26,22 +26,4 @@
         die();
     }
     $conn = null;
-    
-    // if ($Login == 'admin' && $Password == 'ad1234') {
-    //     $_SESSION['username']='admin';
-    //     $_SESSION['role']='a';
-    //     $_SESSION['id']=session_id();
-    //     header("location:index.php");
-    //     die();
-    // } else if ($Login == 'member' && $Password == 'mem1234') {
-    //     $_SESSION['username']='member';
-    //     $_SESSION['role']='m';
-    //     $_SESSION['id']=session_id();
-    //     header("location:index.php");
-    //     die();
-    // } else {
-    //     $_SESSION['error']='error';
-    //     header("location:login.php");
-    //     die();
-    // }
 ?>
