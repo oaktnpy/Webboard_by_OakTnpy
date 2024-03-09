@@ -32,6 +32,7 @@
                         WHERE post.id = $_GET[id]";
                     $result1 = $conn->query($sql1);
                     $result2 = $conn->query($sql2);
+                    $commentNumber = 1;
                     while ($row = $result1->fetch()) {
                         echo "<div class='card border-primary mt-3'>";
                             echo "<div class='card-header bg-primary text-white'> $row[0] </div>";
@@ -40,9 +41,10 @@
                     }
                     while ($row = $result2->fetch()) {
                         echo "<div class='card border-info mt-3'>";
-                            echo "<div class='card-header bg-info text-white'> Comment No.$row[0] </div>";
+                            echo "<div class='card-header bg-info text-white'> Comment No.$commentNumber </div>";
                             echo "<div class='card-body'> $row[1] <br><br> $row[3] - $row[2] </div>";
                         echo "</div>";
+                        $commentNumber++;
                     }
                     $conn = null;
                 ?>
