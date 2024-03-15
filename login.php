@@ -40,10 +40,11 @@
                             <div class="form-group mt-2">
                                 <label for="pwd" class="form-label">Password :</label>
                                 <div class="input-group">
-                                    <input type="password" name="pwd" class="form-control" id="passwordInput" required>
-                                    <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility()">
-                                        <i id="eyeIcon" class="bi bi-eye-fill"></i>
-                                    </button>
+                                    <input type="password" name="pwd" id="pwd" class="form-control" required>
+                                    <span class="input-group-text" onclick="PasswordVisibility()">
+                                        <i class="bi bi-eye-fill" id="show_eye"></i>
+                                        <i class="bi bi-eye-slash-fill d-none" id="hide_eye"></i>
+                                    </span>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-center mt-3">
@@ -62,18 +63,24 @@
         </div>
 
         <script>
-            function togglePasswordVisibility() {
-                var passwordInput = document.getElementById("passwordInput");
-                var eyeIcon = document.getElementById("eyeIcon");
-
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    eyeIcon.classList.remove("bi-eye-fill");
-                    eyeIcon.classList.add("bi-eye-slash-fill");
+            function PasswordVisibility() {
+                var password = document.getElementById("pwd");
+                var show_eyeIcon = document.getElementById("show_eye");
+                var hide_eyeIcon = document.getElementById("hide_eye");
+                hide_eyeIcon.classList.remove("d-none");
+                if (password.type === "password") {
+                    password.type = "text";
+                    // show_eyeIcon.classList.add("d-none");
+                    // hide_eyeIcon.classList.add("d-block");
+                    show_eyeIcon.style.display="none";
+                    hide_eyeIcon.style.display="block";
                 } else {
-                    passwordInput.type = "password";
-                    eyeIcon.classList.remove("bi-eye-slash-fill");
-                    eyeIcon.classList.add("bi-eye-fill");
+                    password.type = "password";
+                    // show_eyeIcon.classList.remove("d-none");
+                    // show_eyeIcon.classList.add("d-block");
+                    // hide_eyeIcon.classList.add("d-none");
+                    show_eyeIcon.style.display="block";
+                    hide_eyeIcon.style.display="none";
                 }
             }
         </script>

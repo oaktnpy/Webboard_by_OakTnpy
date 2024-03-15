@@ -7,23 +7,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Webboard LnwLnw</title>
-
-    <script>
-        function validatePassword() {
-            var passwordInputs = document.getElementsByName("pwd");
-            var password = passwordInputs[0].value;
-            var confirmPassword = passwordInputs[1].value;
-
-            if (password !== confirmPassword) {
-                alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
 </head>
 <body>
+    <script>
+        function ConfirmPwd() {
+            let pwd1 = document.getElementById("pwd1");
+            let pwd2 = document.getElementById("pwd2");
+
+            if (pwd1.value !== pwd2.value) {
+                alert("รหัสผ่านทั้งสองช่องไม่ตรงกัน");
+                pwd2.value="";
+            }
+        }
+    </script>
     <div class="container">
         <header>
             <h1 style="text-align: center;" class="mt-3">REGISTER MEMBERS</h1>
@@ -49,29 +45,29 @@
                 <div class="card border-primary">
                     <div class="card-header bg-primary text-white">Register</div>
                     <div class="card-body">
-                        <form action="register_save.php" method="POST" onsubmit="validatePassword()">
+                        <form action="register_save.php" method="POST">
                             <div class="row">
-                                <label class="col-lg-3 col-form-label">Username: </label>
+                                <label for="login" class="col-lg-3 col-form-label">Username: </label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="login" class="form-control" require>
+                                    <input id="login" type="text" name="login" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Password: </label>
+                                <label for="pwd1" class="col-lg-3 col-form-label">Password: </label>
                                 <div class="col-lg-9">
-                                    <input type="password" name="pwd" class="form-control" require>
+                                    <input id="pwd1" type="password" name="pwd1" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Confirm Password: </label>
+                                <label for="pwd2" class="col-lg-3 col-form-label">Confirm Password: </label>
                                 <div class="col-lg-9">
-                                    <input type="password" name="pwd" class="form-control" required>
+                                    <input id="pwd2" type="password" name="pwd2" class="form-control" onblur="ConfirmPwd()" required>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Name-Surename: </label>
+                                <label for="name" class="col-lg-3 col-form-label">Name-Surename: </label>
                                 <div class="col-lg-9">
-                                    <input type="text" name="name" class="form-control" require>
+                                    <input id="name" type="text" name="name" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -92,9 +88,9 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <label class="col-lg-3 col-form-label">Email: </label>
+                                <label for="email" class="col-lg-3 col-form-label">Email: </label>
                                 <div class="col-lg-9">
-                                    <input type="email" name="email" class="form-control" require>
+                                    <input id="email" type="email" name="email" class="form-control" require>
                                 </div>
                             </div>
                             <div class="row mt-3">

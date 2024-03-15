@@ -25,52 +25,53 @@
                     $sql1 = "SELECT post.title, post.content, post.post_date, user.login
                         FROM post INNER JOIN user ON (post.user_id = user.id)
                         WHERE post.id = $_GET[id]";
-                    $sql2 = "SELECT comment.id, comment.content, comment.post_date, user.login
-                        FROM comment
-                        INNER JOIN user ON (comment.user_id = user.id)
-                        INNER JOIN post ON (comment.post_id = post.id)
-                        WHERE post.id = $_GET[id]";
                     $result1 = $conn->query($sql1);
-                    $result2 = $conn->query($sql2);
-                    $commentNumber = 1;
                     while ($row = $result1->fetch()) {
                         echo "<div class='card border-primary mt-3'>";
                             echo "<div class='card-header bg-primary text-white'> $row[0] </div>";
                             echo "<div class='card-body'> $row[1] <br><br> $row[3] - $row[2] </div>";
                         echo "</div>";
                     }
+                    $sql2 = "SELECT comment.content, comment.post_date, user.login
+                        FROM comment
+                        INNER JOIN user ON (comment.user_id = user.id)
+                        WHERE comment.post_id = $_GET[id]";
+                    $result2 = $conn->query($sql2);
+                    $commentNumber = 1;
                     while ($row = $result2->fetch()) {
                         echo "<div class='card border-info mt-3'>";
                             echo "<div class='card-header bg-info text-white'> Comment No.$commentNumber </div>";
-                            echo "<div class='card-body'> $row[1] <br><br> $row[3] - $row[2] </div>";
+                            echo "<div class='card-body'> $row[0] <br><br> $row[2] - $row[1] </div>";
                         echo "</div>";
                         $commentNumber++;
                     }
                     $conn = null;
                 ?>
-                <div class="card border-success mt-3">
-                    <div class="card-header bg-success text-white"> Leave a comment </div>
-                    <div class="card-body">
-                        <form action="post_save.php" method="post">
-                            <input type="hidden" name="post_id" value="<?= $_GET['id'];?>">
-                            <div class="row mb-3 justify-content-center">
-                                <div class="col-lg-10">
-                                    <textarea name="comment" rows="8" class="form-control" required></textarea>
+                <?php if(isset($_SESSION['id'])) { ?>
+                    <div class="card border-success mt-3">
+                        <div class="card-header bg-success text-white"> Leave a comment </div>
+                        <div class="card-body">
+                            <form action="post_save.php" method="post">
+                                <input type="hidden" name="post_id" value="<?= $_GET['id'];?>">
+                                <div class="row mb-3 justify-content-center">
+                                    <div class="col-lg-10">
+                                        <textarea name="comment" rows="8" class="form-control" required></textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12 d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-success btn-sm text-white me-1">
-                                        <i class="bi bi-box-arrow-up-right"></i> send message
-                                    </button>
-                                    <button type="reset" class="btn btn-danger btn-sm ms-1">
-                                        <i class="bi bi-x-square"></i> cancel
-                                    </button>
+                                <div class="row">
+                                    <div class="col-lg-12 d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-success btn-sm text-white me-1">
+                                            <i class="bi bi-box-arrow-up-right"></i> send message
+                                        </button>
+                                        <button type="reset" class="btn btn-danger btn-sm ms-1">
+                                            <i class="bi bi-x-square"></i> cancel
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
                 <br>
             </div>
             <div class="col-lg-3 col-md-2 col-sm-1"></div>

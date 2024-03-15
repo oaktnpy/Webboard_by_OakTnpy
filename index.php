@@ -66,11 +66,10 @@ session_start();
                     ORDER BY t1.post_date DESC";
                 $result = $conn->query($sql);
                 while ($row = $result->fetch()) {
-                    echo "<tr>";
-                    echo "<td>[ $row[0] ] <a href=post.php?id=$row[2] style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</td>";
+                    echo "<tr><td class='d-flex justify-content-between'><div>[ $row[0] ] <a href=post.php?id=$row[2] style=text-decoration:none>$row[1]</a><br>$row[3] - $row[4]</div>";
                     
                     if (isset($_SESSION['id']) && $_SESSION['role'] == 'a') {
-                        echo "<td style='text-align: right;'><button class='btn btn-danger btn-sm ml-2' onclick='confirmDelete($row[2])'><i class='bi bi-trash'></i></button></td>";
+                        echo "<div class='me-2 align-self-center'><a href='delete.php?id=$row[2]' class='btn btn-danger btn-sm' onclick='return confirmDelete()'><i class='bi bi-trash'></i></a></div>";
                     }
                     
                     echo "</td></tr>";
@@ -80,11 +79,9 @@ session_start();
         </table>
 
         <script>
-            function confirmDelete(postId) {
-                var confirmDelete = confirm('ต้องการลบจริงหรือไม่?');
-                if (confirmDelete) {
-                    window.location.href = 'delete.php?id=' + postId;
-                }
+            function confirmDelete() {
+                var confDelete = confirm('Do you really want to delete it ?');
+                return confDelete;
             }
         </script>
     </div>
