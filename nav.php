@@ -15,8 +15,12 @@
                                 <i class='bi bi-person-lines-fill'></i>
                                 $_SESSION[username]
                             </a>
-                            <ul class='dropdown-menu'>
-                                <a class='dropdown-item' href='logout.php'>
+                            <ul class='dropdown-menu'>";
+                                if ($_SESSION['role'] == 'a') {
+                                    echo "<a class='dropdown-item' href='category.php'><i class='bi bi-bookmarks'></i> Category Manage</a>
+                                          <a class='dropdown-item' href='#'><i class='bi bi-person-check'></i> User Manage</a>";
+                                }
+                                echo "<a class='dropdown-item' href='logout.php'>
                                     <i class='bi bi-power'></i> Logout
                                 </a>
                             </ul>
